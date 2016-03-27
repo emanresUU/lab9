@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Lab 8</title>
+   <meta charset="UTF-8">
+   <script src="lab8.js" defer></script>
+</head>
+<body>
+   <h1>Tea House</h2> 
+  
+   Tea 
+   <select autofocus id="teaType">
+      <option>Black</option>
+      <option>Green</option>
+      <option>Red</option>
+   </select>
+   <br><br>
+
+   Topping
+   <select id="topping">
+      <option>Grass Jelly</option>
+      <option>Coconut</option>
+      <option>Pearls</option>
+      <option>Mango Stars</option>
+   </select>
+   <p> 
+   <input type="button" value="Add Topping" onclick="addTopping()">
+   <input type="button" value="Remove Toppings" onclick="removeToppings()">
+   </p>
+   
+   Current Toppings:
+	<p><ul id="currentToppings"></ul></p><br>
+
+   Milk 
+   <select id="milk">
+      <option>Yes</option>
+      <option>No</option>
+   </select>
+   <br><br>
+
+   <input type="button" value="Calculate Price" onclick="calculateTotalPrice()"> 
+   <br> 
+   Total Price:
+   <br>
+   <div id="totalPrice"></div>
+   <br>
+
+</body>
+</html>
