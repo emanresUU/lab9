@@ -1,5 +1,5 @@
 var toppingsArray = [];
-
+var orderArray = [[],[],[]];
 
 function addTopping() {
 	"use strict";  
@@ -18,7 +18,6 @@ function addTopping() {
 	}
 }
 
-
 function removeToppings() {
 	"use strict";  
 	toppingsArray.length = 0;
@@ -26,18 +25,25 @@ function removeToppings() {
 	topping.innerHTML = "";
 }
 
-
-function calculateTotalPrice() {
-	"use strict";
-	document.getElementById("totalPrice").innerHTML = "$ " +
-		(calculateToppingsPrice() + calculateTeaPrice() + calculateMilkPrice());
+function cupOfTeaConstructor() {
+   this.teaType = document.getElementById("teaType").value;
+   this.toppingsList = toppingsArray.slice(0, 5);
+   this.milkOption = document.getElementById("milk").value;
 }
 
+function addTeasToOrder(cupOfTea) {
+	"use strict";
+}   
 
-function calculateTeaPrice() {
+function calculateCost() {
+	"use strict";
+	document.getElementById("totalPrice").innerHTML = "$ " +
+		(calculateTeaCost(teaOrder.teaType) + calculateToppingsPrice() + calculateMilkPrice());
+}
+
+function calculateTeaCost(tea) {
 	"use strict";
 	var teaPrice = 0;
-	var tea = document.getElementById("teaType").value;
 	if (tea === "Black") {
 		teaPrice = 2.50;
 	}
@@ -49,7 +55,6 @@ function calculateTeaPrice() {
 	}
 	return teaPrice;
 }
-
 
 function calculateToppingsPrice() {
 	"use strict";
@@ -75,7 +80,6 @@ function calculateToppingsPrice() {
 	toppingsPrice = grassJellyPrice + coconutPrice + pearlsPrice + mangoStarsPrice;
 	return toppingsPrice;
 }
-
 
 function calculateMilkPrice() {
 	"use strict";

@@ -3,10 +3,10 @@
 <head>
    <title>Lab 8</title>
    <meta charset="UTF-8">
-   <script src="lab8.js" defer></script>
+   <script src="lab9.js" defer></script>
 </head>
 <body>
-   <h1>Tea House</h2> 
+   <h2>Tea House</h2> 
   
    Tea 
    <select autofocus id="teaType">
@@ -14,7 +14,8 @@
       <option>Green</option>
       <option>Red</option>
    </select>
-   <br><br>
+   <br>
+   <br>
 
    Topping
    <select id="topping">
@@ -29,7 +30,9 @@
    </p>
    
    Current Toppings:
-	<p><ul id="currentToppings"></ul></p><br>
+   <ul id="currentToppings"></ul>
+   <br>
+
 
    Milk 
    <select id="milk">
@@ -37,13 +40,14 @@
       <option>No</option>
    </select>
    <br><br>
+  
+   <h2>Your Order</h2>
 
-   <input type="button" value="Calculate Price" onclick="calculateTotalPrice()"> 
-   <br> 
-   Total Price:
-   <br>
-   <div id="totalPrice"></div>
-   <br>
-
+   <input type="button" value="addDrink" onclick="calculateCost()"> 
+   <input type="button" value="remove" onclick="calculateCost()"> 
+   <input type="button" value="reset" onclick="calculateCost()"> 
+   
+   <table id="orderTable">
+   </table>
 </body>
 </html>
