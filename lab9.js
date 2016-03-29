@@ -30,22 +30,10 @@ function addDrink() {
    "use strict";
    var cupOfTea = new cupOfTeaConstructor();
 
-//      alert("cupOfTea");  
-//      alert(cupOfTea.numberOfTeaOrdered);  
-//      alert(cupOfTea.teaType);  
-//      alert(cupOfTea.milkOption);  
-      alert(cupOfTea.toppingsList);  
-
       var indexOfDuplicate = returnIndexOfDuplicateOnTheOrder(cupOfTea);
       addItemToOrderIfItemIsUnique(indexOfDuplicate, cupOfTea);
       addCountToOrderIfItemIsNonUnique(indexOfDuplicate);
       
-//      alert("orderArray");  
-//      alert(orderArray[0].numberOfTeaOrdered);
-//      alert(orderArray[0].teaType);
-//      alert(orderArray[0].milkOption);
-      alert(orderArray[0].toppingsList);
-
       writeOrderArrayOnTable();
 }
 
@@ -91,11 +79,6 @@ function checkEqualityOfNumericalArrays(array1, array2) {
    }
 }
 
-
-
-
-
-
 function cupOfTeaConstructor() {
    this.numberOfTeaOrdered = 1;
    this.teaType = document.getElementById("teaType").value;
@@ -110,70 +93,68 @@ function writeOrderArrayOnTable() {
       table = table + "<tr><td>" + orderArray[i].numberOfTeaOrdered + "</td>";
       table = table + "<td>" + orderArray[i].teaType + "</td>";
       table = table + "<td>" + orderArray[i].milkOption + "</td>";
-      table = table + "<td>" + orderArray[i].toppingsList + 
-      "</td></tr>";
+      table = table + "<td>" + orderArray[i].toppingsList + "</td>";
+      table = table + "<td>$" + calculateCost(orderArray[i]) * orderArray[i].numberOfTeaOrdered + "</td></tr>";
    }
    document.getElementById("orderTable").innerHTML = table;
 }
 
+function calculateCost(cupOfTea) {
+   var totalCost = 0;
+   totalCost = calculateTeaCost(cupOfTea) +
+      calculateMilkCost(cupOfTea) +
+      calculateToppingsCost(cupOfTea);
+   return totalCost;
+}
+
+function calculateTeaCost(cupOfTea) {
+   "use strict";
+   var teaPrice = 0;
+   if (cupOfTea.teaType === "Black") {
+      teaPrice = 2.50;
+   }
+   if (cupOfTea.teaType === "Green") {
+      teaPrice = 3.00;
+   }
+   if (cupOfTea.teaType === "Red") {
+      teaPrice = 3.50;
+   }
+   return teaPrice;
+}
+
+function calculateToppingsCost(cupOfTea) {
+   "use strict";
+   var grassJellyPrice = 0;
+   var coconutPrice = 0;
+   var pearlsPrice = 0;
+   var mangoStarsPrice = 0;
+   var toppingsPrice = 0;
+   for (var i = 0; i < cupOfTea.toppingsList.length; i = i + 1) {
+      if (cupOfTea.toppingsList[i] === "Grass Jelly") {
+         grassJellyPrice = 0.50;
+      }
+      if (cupOfTea.toppingsList[i] === "Coconut") {
+         coconutPrice = 0.75;
+      }
+      if (cupOfTea.toppingsList[i] === "Pearls") {
+         pearlsPrice = 0.50;
+      }
+      if (cupOfTea.toppingsList[i] === "Mango Stars") {
+         mangoStarsPrice = 1.00;
+      }
+   }
+   toppingsPrice = grassJellyPrice + coconutPrice + pearlsPrice + mangoStarsPrice;
+   return toppingsPrice;
+}
+
+function calculateMilkCost(cupOfTea) {
+   "use strict";
+   var milkPrice = 0;
+   if (cupOfTea.milkOption === "Yes") {
+      milkPrice = 1.00;
+      return milkPrice;
+   }
+   return milkPrice;
+}
 
 
-//function calculateCost() {
-//   "use strict";
-//   document.getElementById("totalPrice").innerHTML = "$ " +
-//      (calculateTeaCost(teaOrder.teaType) + calculateToppingsPrice() + calculateMilkPrice());
-//}
-//
-//function calculateTeaCost(tea) {
-//   "use strict";
-//   var teaPrice = 0;
-//   if (tea === "Black") {
-//      teaPrice = 2.50;
-//   }
-//   if (tea === "Green") {
-//      teaPrice = 3.00;
-//   }
-//   if (tea === "Red") {
-//      teaPrice = 3.50;
-//   }
-//   return teaPrice;
-//}
-//
-//function calculateToppingsPrice() {
-//   "use strict";
-//   var grassJellyPrice = 0;
-//   var coconutPrice = 0;
-//   var pearlsPrice = 0;
-//   var mangoStarsPrice = 0;
-//   var toppingsPrice = 0;
-//   for (var i = 0; i < toppingsArray.length; i = i + 1) {
-//      if (toppingsArray[i] === "Grass Jelly") {
-//         grassJellyPrice = 0.50;
-//      }
-//      if (toppingsArray[i] === "Coconut") {
-//         coconutPrice = 0.75;
-//      }
-//      if (toppingsArray[i] === "Pearls") {
-//         pearlsPrice = 0.50;
-//      }
-//      if (toppingsArray[i] === "Mango Stars") {
-//         mangoStarsPrice = 1.00;
-//      }
-//   }
-//   toppingsPrice = grassJellyPrice + coconutPrice + pearlsPrice + mangoStarsPrice;
-//   return toppingsPrice;
-//}
-//
-//function calculateMilkPrice() {
-//   "use strict";
-//   var milk = document.getElementById("milk").value;
-//   var milkPrice = 0;
-//   if (milk === "Yes") {
-//      milkPrice = 1.00;
-//   }
-//   return milkPrice;
-//}
-//
-//
-//
-//
