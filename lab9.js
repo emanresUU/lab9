@@ -95,6 +95,7 @@ function writeOrderArrayOnTable() {
       table = table + "<td>" + orderArray[i].toppingsList + "</td>";
       table = table + "<td>$" + calculateCost(orderArray[i]) * orderArray[i].numberOfTeaOrdered + "</td></tr>";
    }
+      table = table + "<tr><td></td><td></td><td></td><td>Total Cost</td><td>$" + calculateTotalCost() + "</td></tr>";
    document.getElementById("orderTable").innerHTML = table;
 }
 
@@ -172,3 +173,12 @@ function resetOrderTable() {
    orderArray.length = 0;
    writeOrderArrayOnTable();
 }
+
+function calculateTotalCost() {
+   var totalCost = 0;
+   for (var i = 0; i < orderArray.length; i = i + 1) {
+      totalCost = totalCost + orderArray[i].numberOfTeaOrdered * calculateCost(orderArray[i]);
+   }
+   return totalCost;
+}
+
