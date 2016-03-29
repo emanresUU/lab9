@@ -1,4 +1,5 @@
 var toppingsArray = [];
+var orderArray = [];
 
 function addTopping() {
    "use strict";  
@@ -24,37 +25,32 @@ function removeToppings() {
    topping.innerHTML = "";
 }
 
-var orderArray = [];
-
 function addDrink() {
    "use strict";
    var cupOfTea = new cupOfTeaConstructor();
-
    var indexOfDuplicate = returnIndexOfDuplicateOnTheOrder(cupOfTea);
    addItemToOrderIfItemIsUnique(indexOfDuplicate, cupOfTea);
    addCountToOrderIfItemIsNonUnique(indexOfDuplicate);
    writeOrderArrayOnTable();
 }
 
+function cupOfTeaConstructor() {
+   var milkPrice = 0;
+   this.numberOfTeaOrdered = 1;
+   this.teaType = document.getElementById("teaType").value;
+   this.milkOption = document.getElementById("milk").value;
+   this.toppingsList = toppingsArray.slice(0,5);
+}
+
 function returnIndexOfDuplicateOnTheOrder(cupOfTea) {
+   "use strict";
+   var milkPrice = 0;
    for (var i = 0; i < orderArray.length; i = i + 1) {
       if (cupOfTea.teaType === orderArray[i].teaType &&
             cupOfTea.milkOption === orderArray[i].milkOption &&
             checkEqualityOfNumericalArrays(cupOfTea.toppingsList, orderArray[i].toppingsList)) {
                return i;
             }
-   }
-}
-
-function addItemToOrderIfItemIsUnique(index, cupOfTea) {
-   if (typeof(index) === "undefined") {
-      orderArray.push(cupOfTea);
-   }
-}
-
-function addCountToOrderIfItemIsNonUnique(index) {
-   if (typeof(index) === "number") {
-      orderArray[index].numberOfTeaOrdered = orderArray[index].numberOfTeaOrdered + 1;
    }
 }
 
@@ -78,11 +74,20 @@ function checkEqualityOfNumericalArrays(array1, array2) {
    }
 }
 
-function cupOfTeaConstructor() {
-   this.numberOfTeaOrdered = 1;
-   this.teaType = document.getElementById("teaType").value;
-   this.milkOption = document.getElementById("milk").value;
-   this.toppingsList = toppingsArray.slice(0,5);
+function addItemToOrderIfItemIsUnique(index, cupOfTea) {
+   "use strict";
+   var milkPrice = 0;
+   if (typeof(index) === "undefined") {
+      orderArray.push(cupOfTea);
+   }
+}
+
+function addCountToOrderIfItemIsNonUnique(index) {
+   "use strict";
+   var milkPrice = 0;
+   if (typeof(index) === "number") {
+      orderArray[index].numberOfTeaOrdered = orderArray[index].numberOfTeaOrdered + 1;
+   }
 }
 
 function writeOrderArrayOnTable() {
@@ -95,11 +100,13 @@ function writeOrderArrayOnTable() {
       table = table + "<td>" + orderArray[i].toppingsList + "</td>";
       table = table + "<td>$" + calculateCost(orderArray[i]) * orderArray[i].numberOfTeaOrdered + "</td></tr>";
    }
-      table = table + "<tr><td></td><td></td><td></td><td>Total Cost</td><td>$" + calculateTotalCost() + "</td></tr>";
+   table = table + "<tr><td></td><td></td><td></td><td>Total Cost</td><td>$" + calculateTotalCost() + "</td></tr>";
    document.getElementById("orderTable").innerHTML = table;
 }
 
 function calculateCost(cupOfTea) {
+   "use strict";
+   var milkPrice = 0;
    var totalCost = 0;
    totalCost = calculateTeaCost(cupOfTea) +
       calculateMilkCost(cupOfTea) +
@@ -157,8 +164,19 @@ function calculateMilkCost(cupOfTea) {
    return milkPrice;
 }
 
+function calculateTotalCost() {
+   "use strict";
+   var milkPrice = 0;
+   var totalCost = 0;
+   for (var i = 0; i < orderArray.length; i = i + 1) {
+      totalCost = totalCost + orderArray[i].numberOfTeaOrdered * calculateCost(orderArray[i]);
+   }
+   return totalCost;
+}
 
 function removeLastItemAdded() {
+   "use strict";
+   var milkPrice = 0;
    var lastCupOfTeaAdded = orderArray[orderArray.length - 1];
    if (lastCupOfTeaAdded.numberOfTeaOrdered === 1) {
       orderArray.pop();
@@ -170,15 +188,8 @@ function removeLastItemAdded() {
 }
 
 function resetOrderTable() {
+   "use strict";
+   var milkPrice = 0;
    orderArray.length = 0;
    writeOrderArrayOnTable();
 }
-
-function calculateTotalCost() {
-   var totalCost = 0;
-   for (var i = 0; i < orderArray.length; i = i + 1) {
-      totalCost = totalCost + orderArray[i].numberOfTeaOrdered * calculateCost(orderArray[i]);
-   }
-   return totalCost;
-}
-
